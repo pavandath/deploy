@@ -14,16 +14,18 @@ pipeline{
         stage('CodeQuality'){
             steps{
                 echo "**********RUNNING CODEQUALITY TEST***********"
-                sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=pipeline \
-  -Dsonar.host.url=http://35.225.231.58:9000 \
-  -Dsonar.login=sqp_4c8f37cca02dc15840dd56a2c455b4dba4cae502'
+                sh '''
+                mvn clean verify sonar:sonar \
+                 -Dsonar.projectKey=pipeline \
+                 -Dsonar.host.url=http://35.225.231.58:9000 \
+                 -Dsonar.login=sqp_4c8f37cca02dc15840dd56a2c455b4dba4cae502
+                 '''
             }
         }
         stage('DockerBuild'){
             agent label 'docker-slave'
             env{
-                DOCKER_CREdS = credentials('docker_creds')
+                DOCKER_CREDS = credentials('docker_creds')
             }
             steps{
                 echo "************BUILDING DOCKER IMAGE************"
@@ -32,8 +34,8 @@ pipeline{
                 text: '''
                 FROM openjdk:17-jdk-slim
                 WORKDIR /app
-                COPY target/*.tar /app
-                CMD ['java' , '-jar ', 'target/*.jar'] 
+                COPY target/*.jar app.jar
+                CMD ['java' , '-jar ', 'app.jar'] 
                 '''
                 sh 'docker build -t pavandath510/spring:v1 .'
                 sh 'docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PWS} '
