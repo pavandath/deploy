@@ -4,6 +4,7 @@ pipeline{
         stage ('BUILD'){
             steps{
                 echo "********************Building the code**********************"
+                sh 'rm -rf spring-petclinic'   
                 sh 'git clone https://github.com/pavandath/spring-petclinic.git'
                 dir ('spring-petclinic'){
                 sh 'mvn clean package'
