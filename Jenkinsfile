@@ -5,9 +5,10 @@ pipeline{
             steps{
                 echo "********************Building the code**********************"
                 sh 'git clone https://github.com/pavandath/spring-petclinic.git'
-                sh 'cd spring-petclinic'
+                dir ('spring-petclinic'){
                 sh 'mvn clean package'
                 stash name: 'build-jar', includes: 'target/*.jar'   
+            }
             }
         }
 
