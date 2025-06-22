@@ -16,12 +16,14 @@ pipeline{
         stage('CodeQuality'){
             steps{
                 echo "**********RUNNING CODEQUALITY TEST***********"
+                dir ('spring-petclinic'){
                 sh '''
                 mvn clean verify sonar:sonar \
                  -Dsonar.projectKey=pipeline \
                  -Dsonar.host.url=http://35.225.231.58:9000 \
                  -Dsonar.login=sqp_4c8f37cca02dc15840dd56a2c455b4dba4cae502
                  '''
+                }
             }
         }
         stage('DockerBuild'){
