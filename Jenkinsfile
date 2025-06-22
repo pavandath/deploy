@@ -58,7 +58,7 @@ pipeline{
                 steps{
                     echo'*********DEPLOYING THE APPLICATION*******************'
                     sh ' docker pull pavandath510/spring:v1'
-                    sh ' docker run -d --name deployapp -p 8000:8080 pavandath510/springv1'
+                    sh ' docker run -d --name deployapp -p 8000:8080 pavandath510/spring:v1'
                 }
             }
     }
