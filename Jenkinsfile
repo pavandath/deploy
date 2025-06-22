@@ -22,7 +22,7 @@ pipeline{
         }
         stage('DockerBuild'){
             agent label 'docker-slave'
-            enn{
+            env{
                 DOCKER_CREdS = credentials('docker_creds')
             }
             steps{
@@ -41,14 +41,13 @@ pipeline{
 
             }
 
-            stage ('DockerDeploy'){
+        }
+        stage ('DockerDeploy'){
                 steps{
                     sh 'docker pull pavandath510/spring:v1'
                     sh 'docker run -d --name deployapp -p 8000:8080 pavandath510/springv1'
                 }
             }
-
-        }
     }
      
 
