@@ -42,7 +42,7 @@ pipeline{
                 FROM openjdk:17-jdk-slim
                 WORKDIR /app
                 COPY target/*.jar app.jar
-                CMD ['java' , '-jar ', 'app.jar'] 
+                CMD ["java" , "-jar ", "app.jar"] 
                 '''
                 sh ' docker build -t pavandath510/spring:v1 .'
                 sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
