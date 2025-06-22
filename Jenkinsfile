@@ -7,7 +7,7 @@ pipeline{
                 sh 'git clone https://github.com/pavandath/spring-petclinic.git'
                 sh 'cd spring-petclinic'
                 sh 'mvn clean package'
-                stash name: 'build-jar' includes: 'target/*.jar'   
+                stash name: 'build-jar', includes: 'target/*.jar'   
             }
         }
 
