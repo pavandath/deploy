@@ -45,7 +45,7 @@ pipeline{
                 CMD ['java' , '-jar ', 'app.jar'] 
                 '''
                 sh ' docker build -t pavandath510/spring:v1 .'
-                sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PWS}"
+                sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
                 sh ' docker push pavandath510/spring:v1'
 
             }
