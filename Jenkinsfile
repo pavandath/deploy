@@ -23,7 +23,7 @@ pipeline{
             }
         }
         stage('DockerBuild'){
-            agent label 'docker-slave'
+            agent {label 'docker-slave'}
             env{
                 DOCKER_CREDS = credentials('docker_creds')
             }
