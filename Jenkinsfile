@@ -7,7 +7,7 @@ pipeline{
                 sh 'rm -rf spring-petclinic'   
                 sh 'git clone https://github.com/pavandath/spring-petclinic.git'
                 dir ('spring-petclinic'){
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package -DskipTests -e -X'
                 stash name: 'build-jar', includes: 'target/*.jar'   
             }
             }
@@ -53,6 +53,7 @@ pipeline{
                 label 'docker-slave'
             }
                 steps{
+                    echo'*********DEPLOYING THE APPLICATION*******************'
                     sh 'docker pull pavandath510/spring:v1'
                     sh 'docker run -d --name deployapp -p 8000:8080 pavandath510/springv1'
                 }
