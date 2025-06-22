@@ -19,11 +19,12 @@ pipeline{
                 dir ('spring-petclinic'){
                 sh '''
                 mvn clean verify sonar:sonar \
-                 -DskipTests \
-                 -Dcyclonedx.skip=true \
                  -Dsonar.projectKey=pipeline \
                  -Dsonar.host.url=http://35.225.231.58:9000 \
-                 -Dsonar.login=sqp_4c8f37cca02dc15840dd56a2c455b4dba4cae502
+                 -Dsonar.login=sqp_600718924b5f1fcc4e752140992988da1d31cef5\
+                 -DskipTests \
+                 -Dcyclonedx.skip=true 
+
                  '''
                 }
             }
