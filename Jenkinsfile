@@ -44,9 +44,9 @@ pipeline{
                 COPY target/*.jar app.jar
                 CMD ['java' , '-jar ', 'app.jar'] 
                 '''
-                sh 'sudo docker build -t pavandath510/spring:v1 .'
-                sh 'sudo docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PWS} '
-                sh 'sudo docker push pavandath510/spring:v1'
+                sh ' docker build -t pavandath510/spring:v1 .'
+                sh ' docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PWS} '
+                sh ' docker push pavandath510/spring:v1'
 
             }
 
@@ -57,8 +57,8 @@ pipeline{
             }
                 steps{
                     echo'*********DEPLOYING THE APPLICATION*******************'
-                    sh 'sudo docker pull pavandath510/spring:v1'
-                    sh 'sudo docker run -d --name deployapp -p 8000:8080 pavandath510/springv1'
+                    sh ' docker pull pavandath510/spring:v1'
+                    sh ' docker run -d --name deployapp -p 8000:8080 pavandath510/springv1'
                 }
             }
     }
