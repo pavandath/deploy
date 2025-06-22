@@ -7,7 +7,7 @@ pipeline{
                 sh 'rm -rf spring-petclinic'   
                 sh 'git clone https://github.com/pavandath/spring-petclinic.git'
                 dir ('spring-petclinic'){
-                sh 'mvn clean package -DskipTests -e -X'
+                sh 'mvn clean package -DskipTests -Dcyclonedx.skip=true'
                 stash name: 'build-jar', includes: 'target/*.jar'   
             }
             }
