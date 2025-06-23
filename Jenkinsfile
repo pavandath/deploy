@@ -36,12 +36,16 @@ pipeline{
             }
             steps{
                 echo "************BUILDING DOCKER IMAGE************"
+                sh 'mkdir stashed'
+                dir(stashed) {
                 unstash 'build-jar'
+                }
+                sh 'ls -l'
                 writeFile file: 'Dockerfile',
                 text: '''
                 FROM openjdk:17-jdk-slim
                 WORKDIR /app
-                COPY *.jar app.jar
+                COPY stashed/*.jar app.jar
                 EXPOSE 8080
                 CMD ["java" , "-jar", "app.jar"] 
                 '''
