@@ -59,7 +59,7 @@ pipeline{
                 steps{
                     echo'*********DEPLOYING THE APPLICATION*******************'
                     sh ' docker pull pavandath510/spring:v3'
-                    sh ' docker run -d --name deployfinalv3 -p 8200:8080 pavandath510/spring:v2'
+                    sh ' docker run -d --name deployfinaldevv3 -p 8300:8080 pavandath510/spring:v2'
                 }
             }
     }
