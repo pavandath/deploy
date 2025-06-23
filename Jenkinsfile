@@ -45,13 +45,13 @@ pipeline{
                 text: '''
                 FROM openjdk:17-jdk-slim
                 WORKDIR /app
-                COPY stashed/*.jar app.jar
+                COPY /home/pavan/workspace/deploy/stashed/target/stashed/*.jar app.jar
                 EXPOSE 8080
                 CMD ["java", "-jar", "app.jar"] 
                 '''
-                sh ' docker build -t pavandath510/spring:v4 .'
+                sh ' docker build -t pavandath510/spring:v5 .'
                 sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
-                sh ' docker push pavandath510/spring:v4'
+                sh ' docker push pavandath510/spring:v5'
 
             }
 
@@ -62,8 +62,8 @@ pipeline{
             }
                 steps{
                     echo'*********DEPLOYING THE APPLICATION*******************'
-                    sh ' docker pull pavandath510/spring:v4'
-                    sh ' docker run -d --name deployfinaldeevv4 -p 8500:8080 pavandath510/spring:v4'
+                    sh ' docker pull pavandath510/spring:v5'
+                    sh ' docker run -d --name deployfinaldeevv5 -p 8500:8080 pavandath510/spring:v5'
                 }
             }
     }
