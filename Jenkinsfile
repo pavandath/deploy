@@ -43,7 +43,7 @@ pipeline{
                 WORKDIR /app
                 COPY *.jar app.jar
                 EXPOSE 8080
-                CMD ["java" , "-jar ", "app.jar"] 
+                CMD ["java" , "-jar", "app.jar"] 
                 '''
                 sh ' docker build -t pavandath510/spring:v3 .'
                 sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
