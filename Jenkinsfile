@@ -49,9 +49,9 @@ pipeline{
                 EXPOSE 8080
                 CMD ["java", "-jar", "app.jar"] 
                 '''
-                sh ' docker build -t pavandath510/spring:v3 .'
+                sh ' docker build -t pavandath510/spring:v4 .'
                 sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
-                sh ' docker push pavandath510/spring:v3'
+                sh ' docker push pavandath510/spring:v4'
 
             }
 
@@ -62,8 +62,8 @@ pipeline{
             }
                 steps{
                     echo'*********DEPLOYING THE APPLICATION*******************'
-                    sh ' docker pull pavandath510/spring:v3'
-                    sh ' docker run -d --name deployfinaldeevv3 -p 8400:8080 pavandath510/spring:v3'
+                    sh ' docker pull pavandath510/spring:v4'
+                    sh ' docker run -d --name deployfinaldeevv4 -p 8500:8080 pavandath510/spring:v4'
                 }
             }
     }
