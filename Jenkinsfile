@@ -36,8 +36,8 @@ pipeline{
             }
             steps{
                 echo "************BUILDING DOCKER IMAGE************"
-                sh 'mkdir stashed'
-                dir(stashed) {
+                sh 'mkdir -p stashed'
+                dir('stashed') {
                 unstash 'build-jar'
                 }
                 sh 'ls -l'
@@ -47,7 +47,7 @@ pipeline{
                 WORKDIR /app
                 COPY stashed/*.jar app.jar
                 EXPOSE 8080
-                CMD ["java" , "-jar", "app.jar"] 
+                CMD ["java", "-jar", "app.jar"] 
                 '''
                 sh ' docker build -t pavandath510/spring:v3 .'
                 sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
